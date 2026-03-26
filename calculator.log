@@ -1,0 +1,252 @@
+2026-03-25 20:09:44 | INFO     | main | Serving calculator UI
+2026-03-25 20:10:37 | INFO     | main | POST /add  a=1.0 b=1.0
+2026-03-25 20:10:37 | INFO     | operations | ADD: 1.0 + 1.0 = 2.0
+2026-03-25 20:10:46 | INFO     | main | POST /add  a=5.0 b=5.0
+2026-03-25 20:10:46 | INFO     | operations | ADD: 5.0 + 5.0 = 10.0
+2026-03-25 20:10:55 | INFO     | main | POST /add  a=245.0 b=4334.0
+2026-03-25 20:10:55 | INFO     | operations | ADD: 245.0 + 4334.0 = 4579.0
+2026-03-25 20:28:30 | INFO     | main | Serving calculator UI
+2026-03-25 20:28:30 | INFO     | httpx | HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2026-03-25 20:28:30 | INFO     | main | Serving calculator UI
+2026-03-25 20:28:30 | INFO     | httpx | HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2026-03-25 20:28:30 | INFO     | main | POST /add  a=3.0 b=4.0
+2026-03-25 20:28:30 | INFO     | operations | ADD: 3.0 + 4.0 = 7.0
+2026-03-25 20:28:30 | INFO     | httpx | HTTP Request: POST http://testserver/add "HTTP/1.1 200 OK"
+2026-03-25 20:28:30 | INFO     | main | POST /add  a=1.0 b=2.0
+2026-03-25 20:28:30 | INFO     | operations | ADD: 1.0 + 2.0 = 3.0
+2026-03-25 20:28:30 | INFO     | httpx | HTTP Request: POST http://testserver/add "HTTP/1.1 200 OK"
+2026-03-25 20:28:30 | INFO     | main | POST /add  a=-5.0 b=3.0
+2026-03-25 20:28:30 | INFO     | operations | ADD: -5.0 + 3.0 = -2.0
+2026-03-25 20:28:30 | INFO     | httpx | HTTP Request: POST http://testserver/add "HTTP/1.1 200 OK"
+2026-03-25 20:28:30 | INFO     | main | POST /add  a=1.5 b=2.5
+2026-03-25 20:28:30 | INFO     | operations | ADD: 1.5 + 2.5 = 4.0
+2026-03-25 20:28:30 | INFO     | httpx | HTTP Request: POST http://testserver/add "HTTP/1.1 200 OK"
+2026-03-25 20:28:30 | INFO     | httpx | HTTP Request: POST http://testserver/add "HTTP/1.1 422 Unprocessable Entity"
+2026-03-25 20:28:30 | INFO     | main | POST /subtract  a=10.0 b=3.0
+2026-03-25 20:28:30 | INFO     | operations | SUBTRACT: 10.0 - 3.0 = 7.0
+2026-03-25 20:28:30 | INFO     | httpx | HTTP Request: POST http://testserver/subtract "HTTP/1.1 200 OK"
+2026-03-25 20:28:30 | INFO     | main | POST /subtract  a=3.0 b=10.0
+2026-03-25 20:28:30 | INFO     | operations | SUBTRACT: 3.0 - 10.0 = -7.0
+2026-03-25 20:28:30 | INFO     | httpx | HTTP Request: POST http://testserver/subtract "HTTP/1.1 200 OK"
+2026-03-25 20:28:30 | INFO     | main | POST /subtract  a=1.0 b=1.0
+2026-03-25 20:28:30 | INFO     | operations | SUBTRACT: 1.0 - 1.0 = 0.0
+2026-03-25 20:28:30 | INFO     | httpx | HTTP Request: POST http://testserver/subtract "HTTP/1.1 200 OK"
+2026-03-25 20:28:30 | INFO     | main | POST /multiply  a=3.0 b=4.0
+2026-03-25 20:28:30 | INFO     | operations | MULTIPLY: 3.0 * 4.0 = 12.0
+2026-03-25 20:28:30 | INFO     | httpx | HTTP Request: POST http://testserver/multiply "HTTP/1.1 200 OK"
+2026-03-25 20:28:30 | INFO     | main | POST /multiply  a=99.0 b=0.0
+2026-03-25 20:28:30 | INFO     | operations | MULTIPLY: 99.0 * 0.0 = 0.0
+2026-03-25 20:28:30 | INFO     | httpx | HTTP Request: POST http://testserver/multiply "HTTP/1.1 200 OK"
+2026-03-25 20:28:30 | INFO     | main | POST /multiply  a=1.0 b=1.0
+2026-03-25 20:28:30 | INFO     | operations | MULTIPLY: 1.0 * 1.0 = 1.0
+2026-03-25 20:28:30 | INFO     | httpx | HTTP Request: POST http://testserver/multiply "HTTP/1.1 200 OK"
+2026-03-25 20:28:30 | INFO     | main | POST /divide  a=10.0 b=2.0
+2026-03-25 20:28:30 | INFO     | operations | DIVIDE: 10.0 / 2.0 = 5.0
+2026-03-25 20:28:30 | INFO     | httpx | HTTP Request: POST http://testserver/divide "HTTP/1.1 200 OK"
+2026-03-25 20:28:30 | INFO     | main | POST /divide  a=5.0 b=0.0
+2026-03-25 20:28:30 | ERROR    | operations | DIVIDE: division by zero attempted
+2026-03-25 20:28:30 | WARNING  | main | Division error: Cannot divide by zero
+2026-03-25 20:28:30 | INFO     | httpx | HTTP Request: POST http://testserver/divide "HTTP/1.1 400 Bad Request"
+2026-03-25 20:28:30 | INFO     | main | POST /divide  a=5.0 b=0.0
+2026-03-25 20:28:30 | ERROR    | operations | DIVIDE: division by zero attempted
+2026-03-25 20:28:30 | WARNING  | main | Division error: Cannot divide by zero
+2026-03-25 20:28:30 | INFO     | httpx | HTTP Request: POST http://testserver/divide "HTTP/1.1 400 Bad Request"
+2026-03-25 20:28:30 | INFO     | main | POST /divide  a=6.0 b=2.0
+2026-03-25 20:28:30 | INFO     | operations | DIVIDE: 6.0 / 2.0 = 3.0
+2026-03-25 20:28:30 | INFO     | httpx | HTTP Request: POST http://testserver/divide "HTTP/1.1 200 OK"
+2026-03-25 20:28:30 | INFO     | main | POST /power  a=2.0 b=3.0
+2026-03-25 20:28:30 | INFO     | operations | POWER: 2.0 ^ 3.0 = 8.0
+2026-03-25 20:28:30 | INFO     | httpx | HTTP Request: POST http://testserver/power "HTTP/1.1 200 OK"
+2026-03-25 20:28:30 | INFO     | main | POST /power  a=5.0 b=0.0
+2026-03-25 20:28:30 | INFO     | operations | POWER: 5.0 ^ 0.0 = 1.0
+2026-03-25 20:28:30 | INFO     | httpx | HTTP Request: POST http://testserver/power "HTTP/1.1 200 OK"
+2026-03-25 20:28:30 | INFO     | main | POST /power  a=2.0 b=2.0
+2026-03-25 20:28:30 | INFO     | operations | POWER: 2.0 ^ 2.0 = 4.0
+2026-03-25 20:28:30 | INFO     | httpx | HTTP Request: POST http://testserver/power "HTTP/1.1 200 OK"
+2026-03-25 20:28:30 | INFO     | main | POST /modulo  a=10.0 b=3.0
+2026-03-25 20:28:30 | INFO     | operations | MODULO: 10.0 % 3.0 = 1.0
+2026-03-25 20:28:30 | INFO     | httpx | HTTP Request: POST http://testserver/modulo "HTTP/1.1 200 OK"
+2026-03-25 20:28:30 | INFO     | main | POST /modulo  a=5.0 b=0.0
+2026-03-25 20:28:30 | ERROR    | operations | MODULO: modulo by zero attempted
+2026-03-25 20:28:30 | WARNING  | main | Modulo error: Cannot perform modulo by zero
+2026-03-25 20:28:30 | INFO     | httpx | HTTP Request: POST http://testserver/modulo "HTTP/1.1 400 Bad Request"
+2026-03-25 20:28:30 | INFO     | main | POST /modulo  a=7.0 b=3.0
+2026-03-25 20:28:30 | INFO     | operations | MODULO: 7.0 % 3.0 = 1.0
+2026-03-25 20:28:30 | INFO     | httpx | HTTP Request: POST http://testserver/modulo "HTTP/1.1 200 OK"
+2026-03-25 20:32:57 | INFO     | main | Serving calculator UI
+2026-03-25 20:32:58 | INFO     | main | Serving calculator UI
+2026-03-25 20:32:58 | INFO     | main | Serving calculator UI
+2026-03-25 20:32:58 | INFO     | main | Serving calculator UI
+2026-03-25 20:32:59 | INFO     | main | POST /add  a=3.0 b=4.0
+2026-03-25 20:32:59 | INFO     | operations | ADD: 3.0 + 4.0 = 7.0
+2026-03-25 20:32:59 | INFO     | main | Serving calculator UI
+2026-03-25 20:32:59 | INFO     | main | POST /subtract  a=10.0 b=3.0
+2026-03-25 20:32:59 | INFO     | operations | SUBTRACT: 10.0 - 3.0 = 7.0
+2026-03-25 20:33:00 | INFO     | main | Serving calculator UI
+2026-03-25 20:33:00 | INFO     | main | POST /multiply  a=6.0 b=7.0
+2026-03-25 20:33:00 | INFO     | operations | MULTIPLY: 6.0 * 7.0 = 42.0
+2026-03-25 20:33:01 | INFO     | main | Serving calculator UI
+2026-03-25 20:33:01 | INFO     | main | POST /divide  a=15.0 b=3.0
+2026-03-25 20:33:01 | INFO     | operations | DIVIDE: 15.0 / 3.0 = 5.0
+2026-03-25 20:33:02 | INFO     | main | Serving calculator UI
+2026-03-25 20:33:02 | INFO     | main | POST /power  a=2.0 b=8.0
+2026-03-25 20:33:02 | INFO     | operations | POWER: 2.0 ^ 8.0 = 256.0
+2026-03-25 20:33:03 | INFO     | main | Serving calculator UI
+2026-03-25 20:33:03 | INFO     | main | POST /modulo  a=10.0 b=3.0
+2026-03-25 20:33:03 | INFO     | operations | MODULO: 10.0 % 3.0 = 1.0
+2026-03-25 20:33:04 | INFO     | main | Serving calculator UI
+2026-03-25 20:33:04 | INFO     | main | POST /divide  a=5.0 b=0.0
+2026-03-25 20:33:04 | ERROR    | operations | DIVIDE: division by zero attempted
+2026-03-25 20:33:04 | WARNING  | main | Division error: Cannot divide by zero
+2026-03-25 20:33:04 | INFO     | main | Serving calculator UI
+2026-03-25 20:33:05 | INFO     | main | POST /modulo  a=5.0 b=0.0
+2026-03-25 20:33:05 | ERROR    | operations | MODULO: modulo by zero attempted
+2026-03-25 20:33:05 | WARNING  | main | Modulo error: Cannot perform modulo by zero
+2026-03-25 20:33:05 | INFO     | main | Serving calculator UI
+2026-03-25 20:33:05 | INFO     | main | Serving calculator UI
+2026-03-25 20:33:05 | INFO     | main | POST /add  a=2.0 b=2.0
+2026-03-25 20:33:05 | INFO     | operations | ADD: 2.0 + 2.0 = 4.0
+2026-03-25 20:33:06 | INFO     | main | Serving calculator UI
+2026-03-25 20:33:06 | INFO     | main | Serving calculator UI
+2026-03-25 20:33:06 | INFO     | main | POST /add  a=5.0 b=5.0
+2026-03-25 20:33:06 | INFO     | operations | ADD: 5.0 + 5.0 = 10.0
+2026-03-25 20:33:07 | INFO     | main | Serving calculator UI
+2026-03-25 20:33:07 | INFO     | main | POST /divide  a=8.0 b=2.0
+2026-03-25 20:33:07 | INFO     | operations | DIVIDE: 8.0 / 2.0 = 4.0
+2026-03-25 20:33:51 | INFO     | main | Serving calculator UI
+2026-03-25 20:33:51 | INFO     | main | Serving calculator UI
+2026-03-25 20:33:51 | INFO     | main | Serving calculator UI
+2026-03-25 20:33:52 | INFO     | main | Serving calculator UI
+2026-03-25 20:33:52 | INFO     | main | POST /add  a=3.0 b=4.0
+2026-03-25 20:33:52 | INFO     | operations | ADD: 3.0 + 4.0 = 7.0
+2026-03-25 20:33:53 | INFO     | main | Serving calculator UI
+2026-03-25 20:33:53 | INFO     | main | POST /subtract  a=10.0 b=3.0
+2026-03-25 20:33:53 | INFO     | operations | SUBTRACT: 10.0 - 3.0 = 7.0
+2026-03-25 20:33:54 | INFO     | main | Serving calculator UI
+2026-03-25 20:33:54 | INFO     | main | POST /multiply  a=6.0 b=7.0
+2026-03-25 20:33:54 | INFO     | operations | MULTIPLY: 6.0 * 7.0 = 42.0
+2026-03-25 20:33:54 | INFO     | main | Serving calculator UI
+2026-03-25 20:33:55 | INFO     | main | POST /divide  a=15.0 b=3.0
+2026-03-25 20:33:55 | INFO     | operations | DIVIDE: 15.0 / 3.0 = 5.0
+2026-03-25 20:33:55 | INFO     | main | Serving calculator UI
+2026-03-25 20:33:55 | INFO     | main | POST /power  a=2.0 b=8.0
+2026-03-25 20:33:55 | INFO     | operations | POWER: 2.0 ^ 8.0 = 256.0
+2026-03-25 20:33:56 | INFO     | main | Serving calculator UI
+2026-03-25 20:33:56 | INFO     | main | POST /modulo  a=10.0 b=3.0
+2026-03-25 20:33:56 | INFO     | operations | MODULO: 10.0 % 3.0 = 1.0
+2026-03-25 20:33:57 | INFO     | main | Serving calculator UI
+2026-03-25 20:33:57 | INFO     | main | POST /divide  a=5.0 b=0.0
+2026-03-25 20:33:57 | ERROR    | operations | DIVIDE: division by zero attempted
+2026-03-25 20:33:57 | WARNING  | main | Division error: Cannot divide by zero
+2026-03-25 20:33:58 | INFO     | main | Serving calculator UI
+2026-03-25 20:33:58 | INFO     | main | POST /modulo  a=5.0 b=0.0
+2026-03-25 20:33:58 | ERROR    | operations | MODULO: modulo by zero attempted
+2026-03-25 20:33:58 | WARNING  | main | Modulo error: Cannot perform modulo by zero
+2026-03-25 20:33:59 | INFO     | main | Serving calculator UI
+2026-03-25 20:33:59 | INFO     | main | Serving calculator UI
+2026-03-25 20:33:59 | INFO     | main | POST /add  a=2.0 b=2.0
+2026-03-25 20:33:59 | INFO     | operations | ADD: 2.0 + 2.0 = 4.0
+2026-03-25 20:34:00 | INFO     | main | Serving calculator UI
+2026-03-25 20:34:00 | INFO     | main | Serving calculator UI
+2026-03-25 20:34:00 | INFO     | main | POST /add  a=5.0 b=5.0
+2026-03-25 20:34:00 | INFO     | operations | ADD: 5.0 + 5.0 = 10.0
+2026-03-25 20:34:00 | INFO     | main | Serving calculator UI
+2026-03-25 20:34:01 | INFO     | main | POST /divide  a=8.0 b=2.0
+2026-03-25 20:34:01 | INFO     | operations | DIVIDE: 8.0 / 2.0 = 4.0
+2026-03-25 20:34:01 | INFO     | main | Serving calculator UI
+2026-03-25 20:34:01 | INFO     | httpx | HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2026-03-25 20:34:01 | INFO     | main | Serving calculator UI
+2026-03-25 20:34:01 | INFO     | httpx | HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2026-03-25 20:34:01 | INFO     | main | POST /add  a=3.0 b=4.0
+2026-03-25 20:34:01 | INFO     | operations | ADD: 3.0 + 4.0 = 7.0
+2026-03-25 20:34:01 | INFO     | httpx | HTTP Request: POST http://testserver/add "HTTP/1.1 200 OK"
+2026-03-25 20:34:01 | INFO     | main | POST /add  a=1.0 b=2.0
+2026-03-25 20:34:01 | INFO     | operations | ADD: 1.0 + 2.0 = 3.0
+2026-03-25 20:34:01 | INFO     | httpx | HTTP Request: POST http://testserver/add "HTTP/1.1 200 OK"
+2026-03-25 20:34:01 | INFO     | main | POST /add  a=-5.0 b=3.0
+2026-03-25 20:34:01 | INFO     | operations | ADD: -5.0 + 3.0 = -2.0
+2026-03-25 20:34:01 | INFO     | httpx | HTTP Request: POST http://testserver/add "HTTP/1.1 200 OK"
+2026-03-25 20:34:01 | INFO     | main | POST /add  a=1.5 b=2.5
+2026-03-25 20:34:01 | INFO     | operations | ADD: 1.5 + 2.5 = 4.0
+2026-03-25 20:34:01 | INFO     | httpx | HTTP Request: POST http://testserver/add "HTTP/1.1 200 OK"
+2026-03-25 20:34:01 | INFO     | httpx | HTTP Request: POST http://testserver/add "HTTP/1.1 422 Unprocessable Entity"
+2026-03-25 20:34:01 | INFO     | main | POST /subtract  a=10.0 b=3.0
+2026-03-25 20:34:01 | INFO     | operations | SUBTRACT: 10.0 - 3.0 = 7.0
+2026-03-25 20:34:01 | INFO     | httpx | HTTP Request: POST http://testserver/subtract "HTTP/1.1 200 OK"
+2026-03-25 20:34:01 | INFO     | main | POST /subtract  a=3.0 b=10.0
+2026-03-25 20:34:01 | INFO     | operations | SUBTRACT: 3.0 - 10.0 = -7.0
+2026-03-25 20:34:01 | INFO     | httpx | HTTP Request: POST http://testserver/subtract "HTTP/1.1 200 OK"
+2026-03-25 20:34:01 | INFO     | main | POST /subtract  a=1.0 b=1.0
+2026-03-25 20:34:01 | INFO     | operations | SUBTRACT: 1.0 - 1.0 = 0.0
+2026-03-25 20:34:01 | INFO     | httpx | HTTP Request: POST http://testserver/subtract "HTTP/1.1 200 OK"
+2026-03-25 20:34:01 | INFO     | main | POST /multiply  a=3.0 b=4.0
+2026-03-25 20:34:01 | INFO     | operations | MULTIPLY: 3.0 * 4.0 = 12.0
+2026-03-25 20:34:01 | INFO     | httpx | HTTP Request: POST http://testserver/multiply "HTTP/1.1 200 OK"
+2026-03-25 20:34:01 | INFO     | main | POST /multiply  a=99.0 b=0.0
+2026-03-25 20:34:01 | INFO     | operations | MULTIPLY: 99.0 * 0.0 = 0.0
+2026-03-25 20:34:01 | INFO     | httpx | HTTP Request: POST http://testserver/multiply "HTTP/1.1 200 OK"
+2026-03-25 20:34:01 | INFO     | main | POST /multiply  a=1.0 b=1.0
+2026-03-25 20:34:01 | INFO     | operations | MULTIPLY: 1.0 * 1.0 = 1.0
+2026-03-25 20:34:01 | INFO     | httpx | HTTP Request: POST http://testserver/multiply "HTTP/1.1 200 OK"
+2026-03-25 20:34:01 | INFO     | main | POST /divide  a=10.0 b=2.0
+2026-03-25 20:34:01 | INFO     | operations | DIVIDE: 10.0 / 2.0 = 5.0
+2026-03-25 20:34:01 | INFO     | httpx | HTTP Request: POST http://testserver/divide "HTTP/1.1 200 OK"
+2026-03-25 20:34:01 | INFO     | main | POST /divide  a=5.0 b=0.0
+2026-03-25 20:34:01 | ERROR    | operations | DIVIDE: division by zero attempted
+2026-03-25 20:34:01 | WARNING  | main | Division error: Cannot divide by zero
+2026-03-25 20:34:01 | INFO     | httpx | HTTP Request: POST http://testserver/divide "HTTP/1.1 400 Bad Request"
+2026-03-25 20:34:01 | INFO     | main | POST /divide  a=5.0 b=0.0
+2026-03-25 20:34:01 | ERROR    | operations | DIVIDE: division by zero attempted
+2026-03-25 20:34:01 | WARNING  | main | Division error: Cannot divide by zero
+2026-03-25 20:34:01 | INFO     | httpx | HTTP Request: POST http://testserver/divide "HTTP/1.1 400 Bad Request"
+2026-03-25 20:34:01 | INFO     | main | POST /divide  a=6.0 b=2.0
+2026-03-25 20:34:01 | INFO     | operations | DIVIDE: 6.0 / 2.0 = 3.0
+2026-03-25 20:34:01 | INFO     | httpx | HTTP Request: POST http://testserver/divide "HTTP/1.1 200 OK"
+2026-03-25 20:34:01 | INFO     | main | POST /power  a=2.0 b=3.0
+2026-03-25 20:34:01 | INFO     | operations | POWER: 2.0 ^ 3.0 = 8.0
+2026-03-25 20:34:01 | INFO     | httpx | HTTP Request: POST http://testserver/power "HTTP/1.1 200 OK"
+2026-03-25 20:34:01 | INFO     | main | POST /power  a=5.0 b=0.0
+2026-03-25 20:34:01 | INFO     | operations | POWER: 5.0 ^ 0.0 = 1.0
+2026-03-25 20:34:01 | INFO     | httpx | HTTP Request: POST http://testserver/power "HTTP/1.1 200 OK"
+2026-03-25 20:34:01 | INFO     | main | POST /power  a=2.0 b=2.0
+2026-03-25 20:34:01 | INFO     | operations | POWER: 2.0 ^ 2.0 = 4.0
+2026-03-25 20:34:01 | INFO     | httpx | HTTP Request: POST http://testserver/power "HTTP/1.1 200 OK"
+2026-03-25 20:34:01 | INFO     | main | POST /modulo  a=10.0 b=3.0
+2026-03-25 20:34:01 | INFO     | operations | MODULO: 10.0 % 3.0 = 1.0
+2026-03-25 20:34:01 | INFO     | httpx | HTTP Request: POST http://testserver/modulo "HTTP/1.1 200 OK"
+2026-03-25 20:34:01 | INFO     | main | POST /modulo  a=5.0 b=0.0
+2026-03-25 20:34:01 | ERROR    | operations | MODULO: modulo by zero attempted
+2026-03-25 20:34:01 | WARNING  | main | Modulo error: Cannot perform modulo by zero
+2026-03-25 20:34:01 | INFO     | httpx | HTTP Request: POST http://testserver/modulo "HTTP/1.1 400 Bad Request"
+2026-03-25 20:34:01 | INFO     | main | POST /modulo  a=7.0 b=3.0
+2026-03-25 20:34:01 | INFO     | operations | MODULO: 7.0 % 3.0 = 1.0
+2026-03-25 20:34:01 | INFO     | httpx | HTTP Request: POST http://testserver/modulo "HTTP/1.1 200 OK"
+2026-03-25 20:34:01 | INFO     | operations | ADD: 3 + 4 = 7
+2026-03-25 20:34:01 | INFO     | operations | ADD: -2 + -5 = -7
+2026-03-25 20:34:01 | INFO     | operations | ADD: -3 + 10 = 7
+2026-03-25 20:34:01 | INFO     | operations | ADD: 1.5 + 2.5 = 4.0
+2026-03-25 20:34:01 | INFO     | operations | ADD: 0 + 0 = 0
+2026-03-25 20:34:01 | INFO     | operations | ADD: 1000000 + 2000000 = 3000000
+2026-03-25 20:34:01 | INFO     | operations | SUBTRACT: 10 - 3 = 7
+2026-03-25 20:34:01 | INFO     | operations | SUBTRACT: 3 - 10 = -7
+2026-03-25 20:34:01 | INFO     | operations | SUBTRACT: 5 - 5 = 0
+2026-03-25 20:34:01 | INFO     | operations | SUBTRACT: 5.5 - 2.2 = 3.3
+2026-03-25 20:34:01 | INFO     | operations | SUBTRACT: -4 - -6 = 2
+2026-03-25 20:34:01 | INFO     | operations | MULTIPLY: 3 * 4 = 12
+2026-03-25 20:34:01 | INFO     | operations | MULTIPLY: 99 * 0 = 0
+2026-03-25 20:34:01 | INFO     | operations | MULTIPLY: -3 * 4 = -12
+2026-03-25 20:34:01 | INFO     | operations | MULTIPLY: -3 * -4 = 12
+2026-03-25 20:34:01 | INFO     | operations | MULTIPLY: 2.5 * 4.0 = 10.0
+2026-03-25 20:34:01 | INFO     | operations | DIVIDE: 10 / 2 = 5.0
+2026-03-25 20:34:01 | INFO     | operations | DIVIDE: 7 / 2 = 3.5
+2026-03-25 20:34:01 | INFO     | operations | DIVIDE: -10 / 2 = -5.0
+2026-03-25 20:34:01 | ERROR    | operations | DIVIDE: division by zero attempted
+2026-03-25 20:34:01 | INFO     | operations | DIVIDE: 0 / 5 = 0.0
+2026-03-25 20:34:01 | INFO     | operations | POWER: 2 ^ 3 = 8
+2026-03-25 20:34:01 | INFO     | operations | POWER: 5 ^ 0 = 1
+2026-03-25 20:34:01 | INFO     | operations | POWER: 7 ^ 1 = 7
+2026-03-25 20:34:01 | INFO     | operations | POWER: 4 ^ 0.5 = 2.0
+2026-03-25 20:34:01 | INFO     | operations | MODULO: 10 % 3 = 1
+2026-03-25 20:34:01 | INFO     | operations | MODULO: 9 % 3 = 0
+2026-03-25 20:34:01 | ERROR    | operations | MODULO: modulo by zero attempted
+2026-03-25 20:34:01 | INFO     | operations | MODULO: 0 % 5 = 0
