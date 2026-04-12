@@ -1,35 +1,73 @@
-# FastAPI Calculator
+# FastAPI Calculator with Secure User Model
 
-A calculator web application built with FastAPI, complete with unit tests, integration tests, end-to-end Playwright tests, logging, and GitHub Actions CI.
+A FastAPI application with a secure user model, password hashing, Pydantic validation, database testing, and a full CI/CD pipeline with GitHub Actions and Docker Hub.
 
-## Operations
-- Addition, Subtraction, Multiplication, Division, Power, Modulo
+## Features
 
-## Quick Start
+- FastAPI calculator with addition, subtraction, multiplication, division, power, and modulo
+- Secure user model using SQLAlchemy with hashed passwords
+- Pydantic schemas for data validation
+- Password hashing using bcrypt
+- Unit and integration tests
+- CI/CD pipeline with GitHub Actions
+- Docker image pushed to Docker Hub automatically
+
+## How to Run Tests Locally
+
+### Step 1: Make sure PostgreSQL is running
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-playwright install chromium
-python3 main.py
+docker-compose up -d db
 ```
 
-Open http://localhost:8000 in your browser.
-
-## Running Tests
+### Step 2: Install dependencies
 ```bash
-pytest tests/ -v
+pip install -r requirements.txt
+```
+
+### Step 3: Run the tests
+```bash
+pytest tests/test_users.py -v
+```
+
+You should see all tests passing!
+
+## How to Run the App Locally
+
+```bash
+docker-compose up --build
+```
+
+Then open your browser and go to:
+```
+http://localhost:8000
+```
+
+## Docker Hub Repository
+
+The Docker image is available on Docker Hub:
+
+🐳 [hub.docker.com/r/nananjit/fastapi-calculator](https://hub.docker.com/r/nananjit/fastapi-calculator)
+
+To pull and run the image:
+```bash
+docker pull nananjit/fastapi-calculator
+docker run -p 8000:8000 nananjit/fastapi-calculator
 ```
 
 ## Project Structure
 
-- `main.py` - FastAPI app and web UI
+- `main.py` - FastAPI app and calculator UI
+- `models.py` - SQLAlchemy User model
+- `schemas.py` - Pydantic schemas (UserCreate, UserRead)
+- `hashing.py` - Password hashing and verification
+- `database.py` - Database connection and session
 - `operations.py` - Math functions with logging
-- `tests/test_unit.py` - Unit tests
-- `tests/test_integration.py` - Integration tests
-- `tests/test_e2e.py` - End-to-end Playwright tests
-- `.github/workflows/ci.yml` - GitHub Actions CI
--
-- <img width="596" height="448" alt="Screenshot 2026-03-25 at 9 18 06 PM" src="https://github.com/user-attachments/assets/f5e25123-3982-455e-bbdc-fd3c2c38714e" />
-<img width="1701" height="872" alt="Screenshot 2026-03-25 at 9 19 11 PM" src="https://github.com/user-attachments/assets/82c59c18-5063-4391-bdd4-161d020dab32" />
-<img width="696" height="816" alt="Screenshot 2026-03-25 at 9 22 54 PM" src="https://github.com/user-attachments/assets/8fa27cbd-072a-4f2d-9af2-fa36aade53cc" />
+- `tests/test_users.py` - Unit and integration tests
+- `.github/workflows/ci.yml` - GitHub Actions CI/CD pipeline
+- `docker-compose.yml` - Docker Compose configuration
+
+## CI/CD Pipeline
+
+Every time code is pushed to the main branch:
+1. GitHub Actions runs all tests automatically
+2. If tests pass, the Docker image is built and pushed to Docker Hub
