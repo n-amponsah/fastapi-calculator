@@ -56,7 +56,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/fastapi-calculator .
+        run: docker build -t nananjit/fastapi-calculator .
 
       - name: Push Docker image
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/fastapi-calculatorn
+        run: docker push nananjit/fastapi-calculator
