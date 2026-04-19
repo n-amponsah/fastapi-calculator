@@ -45,8 +45,9 @@ jobs:
       - name: Run tests
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/fastapi_db
-          PYTHONPATH: ${{ github.workspace }}
-        run: pytest tests/ -v
+        run: |
+          export PYTHONPATH=$PYTHONPATH:$(pwd)
+          pytest tests/ -v
 
   deploy:
     needs: test
