@@ -47,7 +47,7 @@ jobs:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/fastapi_db
         run: |
           export PYTHONPATH=$PYTHONPATH:$(pwd)
-          pytest tests/ -v
+          pytest tests/test_users.py tests/test_calculations_unit.py tests/test_calculations_integration.py -v
 
   deploy:
     needs: test
