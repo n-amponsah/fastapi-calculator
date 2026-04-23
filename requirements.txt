@@ -7,3 +7,8 @@ pydantic[email]
 pytest
 pytest-asyncio
 httpx
+python-jose[cryptography]
+python-multipart
+playwright
+pytest-playwright
+jinja2
