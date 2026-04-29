@@ -11,6 +11,9 @@ from calculator import CalculationFactory
 from datetime import datetime, timedelta
 from jose import JWTError, jwt
 import os
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
 
 # Create all tables
 Base.metadata.create_all(bind=engine)
@@ -18,8 +21,8 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 # Mount static files and templates
-app.mount("/static", StaticFiles(directory="static"), name="static")
-templates = Jinja2Templates(directory="templates")
+app.mount("/static", StaticFiles(directory=str(BASE_DIR / "static")), name="static")
+templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
 
 # JWT Settings
 SECRET_KEY = os.getenv("SECRET_KEY", "supersecretkey123")
