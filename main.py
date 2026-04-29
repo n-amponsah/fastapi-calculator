@@ -93,7 +93,10 @@ def read(id: int, db: Session = Depends(get_db)):
 
 @app.post("/calculations", response_model=CalculationRead)
 def add(calc: CalculationCreate, db: Session = Depends(get_db)):
-    result = CalculationFactory.compute(calc.type.value, calc.a, calc.b)
+    try:
+        result = CalculationFactory.compute(calc.type.value, calc.a, calc.b)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
     new_calc = Calculation(
         a=calc.a,
         b=calc.b,
