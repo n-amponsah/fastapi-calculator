@@ -11,20 +11,14 @@ from calculator import CalculationFactory
 from datetime import datetime, timedelta
 from jose import JWTError, jwt
 import os
-from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent
-
-# Create all tables
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-# Mount static files and templates
-app.mount("/static", StaticFiles(directory=str(BASE_DIR / "static")), name="static")
-templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
+app.mount("/static", StaticFiles(directory="static"), name="static")
+templates = Jinja2Templates(directory="templates")
 
-# JWT Settings
 SECRET_KEY = os.getenv("SECRET_KEY", "supersecretkey123")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
@@ -35,21 +29,13 @@ def create_access_token(data: dict):
     to_encode.update({"exp": expire})
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
-# -------------------------------------------------------
-# Front-End Pages
-# -------------------------------------------------------
-
 @app.get("/register", response_class=HTMLResponse)
 def register_page(request: Request):
-    return templates.TemplateResponse("register.html", {"request": request})
+    return templates.TemplateResponse(request=request, name="register.html")
 
 @app.get("/login", response_class=HTMLResponse)
 def login_page(request: Request):
-    return templates.TemplateResponse("login.html", {"request": request})
-
-# -------------------------------------------------------
-# User Endpoints
-# -------------------------------------------------------
+    return templates.TemplateResponse(request=request, name="login.html")
 
 @app.post("/users/register", response_model=UserRead)
 def register(user: UserCreate, db: Session = Depends(get_db)):
@@ -78,10 +64,6 @@ def login(user: UserCreate, db: Session = Depends(get_db)):
         raise HTTPException(status_code=401, detail="Invalid username or password")
     token = create_access_token({"sub": db_user.username})
     return {"access_token": token, "token_type": "bearer"}
-
-# -------------------------------------------------------
-# Calculation Endpoints (BREAD)
-# -------------------------------------------------------
 
 @app.get("/calculations", response_model=list[CalculationRead])
 def browse(db: Session = Depends(get_db)):
@@ -116,7 +98,10 @@ def edit(id: int, calc: CalculationCreate, db: Session = Depends(get_db)):
     db_calc = db.query(Calculation).filter(Calculation.id == id).first()
     if not db_calc:
         raise HTTPException(status_code=404, detail="Calculation not found")
-    result = CalculationFactory.compute(calc.type.value, calc.a, calc.b)
+    try:
+        result = CalculationFactory.compute(calc.type.value, calc.a, calc.b)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
     db_calc.a = calc.a
     db_calc.b = calc.b
     db_calc.type = CalculationType[calc.type.name]
