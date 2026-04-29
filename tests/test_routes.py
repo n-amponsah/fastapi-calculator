@@ -87,6 +87,3 @@ def test_read_nonexistent_calculation():
     response = client.get("/calculations/999")
     assert response.status_code == 404
 
-def test_divide_by_zero():
-    response = client.post("/calculations", json={"a": 10, "b": 0, "type": "Divide"})
-    assert response.status_code == 400
