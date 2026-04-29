@@ -45,20 +45,24 @@ jobs:
         run: |
           psql -h localhost -U postgres -c "CREATE DATABASE test_db;"
 
-      - name: Start FastAPI server
-        env:
-          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/fastapi_db
-        run: |
-          export PYTHONPATH=$PYTHONPATH:$(pwd)
-          uvicorn main:app --host 0.0.0.0 --port 8000 &
-          sleep 15
-
       - name: Run unit and integration tests
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/fastapi_db
         run: |
           export PYTHONPATH=$PYTHONPATH:$(pwd)
           pytest tests/test_users.py tests/test_calculations_unit.py tests/test_calculations_integration.py tests/test_routes.py -v
+
+      - name: Start FastAPI server
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/fastapi_db
+        run: |
+          export PYTHONPATH=$PYTHONPATH:$(pwd)
+          nohup uvicorn main:app --host 0.0.0.0 --port 8000 &
+          echo "Waiting for server..."
+          for i in {1..30}; do
+            curl -s http://localhost:8000/docs > /dev/null && echo "Server ready!" && break
+            sleep 2
+          done
 
       - name: Run Playwright E2E tests
         env:
