@@ -31,95 +31,62 @@ def setup_db():
 
 client = TestClient(app)
 
-# -------------------------------------------------------
-# User Tests
-# -------------------------------------------------------
-
 def test_register_user():
-    response = client.post("/users/register", json={
-        "username": "testuser",
-        "email": "test@example.com",
-        "password": "password123"
-    })
+    response = client.post("/users/register", json={"username": "testuser", "email": "test@example.com", "password": "password123"})
     assert response.status_code == 200
     assert response.json()["username"] == "testuser"
 
 def test_register_duplicate_username():
-    client.post("/users/register", json={
-        "username": "testuser",
-        "email": "test@example.com",
-        "password": "password123"
-    })
-    response = client.post("/
-ls ~/Desktop/fastapi-calculator/tests/
-cat > ~/Desktop/fastapi-calculator/.github/workflows/ci.yml << 'MYEOF'
-name: CI/CD Pipeline
+    client.post("/users/register", json={"username": "testuser", "email": "test@example.com", "password": "password123"})
+    response = client.post("/users/register", json={"username": "testuser", "email": "test2@example.com", "password": "password123"})
+    assert response.status_code == 400
 
-on:
-  push:
-    branches:
-      - main
+def test_login_success():
+    client.post("/users/register", json={"username": "testuser", "email": "test@example.com", "password": "password123"})
+    response = client.post("/users/login", json={"username": "testuser", "email": "test@example.com", "password": "password123"})
+    assert response.status_code == 200
+    assert "access_token" in response.json()
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
+def test_login_wrong_password():
+    client.post("/users/register", json={"username": "testuser", "email": "test@example.com", "password": "password123"})
+    response = client.post("/users/login", json={"username": "testuser", "email": "test@example.com", "password": "wrongpassword"})
+    assert response.status_code == 401
 
-    services:
-      postgres:
-        image: postgres:15
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: fastapi_db
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+def test_add_calculation():
+    response = client.post("/calculations", json={"a": 3, "b": 4, "type": "Add"})
+    assert response.status_code == 200
+    assert response.json()["result"] == 7.0
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+def test_browse_calculations():
+    client.post("/calculations", json={"a": 3, "b": 4, "type": "Add"})
+    response = client.get("/calculations")
+    assert response.status_code == 200
+    assert len(response.json()) == 1
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.12'
+def test_read_calculation():
+    post = client.post("/calculations", json={"a": 3, "b": 4, "type": "Add"})
+    calc_id = post.json()["id"]
+    response = client.get(f"/calculations/{calc_id}")
+    assert response.status_code == 200
+    assert response.json()["result"] == 7.0
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
+def test_edit_calculation():
+    post = client.post("/calculations", json={"a": 3, "b": 4, "type": "Add"})
+    calc_id = post.json()["id"]
+    response = client.put(f"/calculations/{calc_id}", json={"a": 10, "b": 2, "type": "Multiply"})
+    assert response.status_code == 200
+    assert response.json()["result"] == 20.0
 
-      - name: Create test database
-        env:
-          PGPASSWORD: postgres
-        run: |
-          psql -h localhost -U postgres -c "CREATE DATABASE test_db;"
+def test_delete_calculation():
+    post = client.post("/calculations", json={"a": 3, "b": 4, "type": "Add"})
+    calc_id = post.json()["id"]
+    response = client.delete(f"/calculations/{calc_id}")
+    assert response.status_code == 200
 
-      - name: Run tests
-        env:
-          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/fastapi_db
-        run: |
-          export PYTHONPATH=$PYTHONPATH:$(pwd)
-          pytest tests/test_users.py tests/test_calculations_unit.py tests/test_calculations_integration.py tests/test_routes.py -v
+def test_read_nonexistent_calculation():
+    response = client.get("/calculations/999")
+    assert response.status_code == 404
 
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Log in to DockerHub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Build Docker image
-        run: docker build -t nananjit/fastapi-calculator .
-
-      - name: Push Docker image
-        run: docker push nananjit/fastapi-calculator
+def test_divide_by_zero():
+    response = client.post("/calculations", json={"a": 10, "b": 0, "type": "Divide"})
+    assert response.status_code == 422
