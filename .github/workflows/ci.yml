@@ -36,18 +36,36 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Install Playwright browsers
+        run: playwright install --with-deps chromium
+
       - name: Create test database
         env:
           PGPASSWORD: postgres
         run: |
           psql -h localhost -U postgres -c "CREATE DATABASE test_db;"
 
-      - name: Run tests
+      - name: Start FastAPI server
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/fastapi_db
         run: |
           export PYTHONPATH=$PYTHONPATH:$(pwd)
-          pytest tests/test_users.py tests/test_calculations_unit.py tests/test_calculations_integration.py -v
+          uvicorn main:app --host 0.0.0.0 --port 8000 &
+          sleep 5
+
+      - name: Run unit and integration tests
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/fastapi_db
+        run: |
+          export PYTHONPATH=$PYTHONPATH:$(pwd)
+          pytest tests/test_users.py tests/test_calculations_unit.py tests/test_calculations_integration.py tests/test_routes.py -v
+
+      - name: Run Playwright E2E tests
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/fastapi_db
+        run: |
+          export PYTHONPATH=$PYTHONPATH:$(pwd)
+          pytest tests/test_e2e.py -v
 
   deploy:
     needs: test
