@@ -33,6 +33,10 @@ def create_access_token(data: dict):
 def register_page(request: Request):
     return templates.TemplateResponse(request=request, name="register.html")
 
+@app.get("/calculations-page", response_class=HTMLResponse)
+def calculations_page(request: Request):
+    return templates.TemplateResponse(request=request, name="calculations.html")
+
 @app.get("/login", response_class=HTMLResponse)
 def login_page(request: Request):
     return templates.TemplateResponse(request=request, name="login.html")
