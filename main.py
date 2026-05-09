@@ -114,6 +114,33 @@ def edit(id: int, calc: CalculationCreate, db: Session = Depends(get_db)):
     db.refresh(db_calc)
     return db_calc
 
+
+@app.get("/history", response_class=HTMLResponse)
+def history_page(request: Request):
+    return templates.TemplateResponse(request=request, name="history.html")
+
+@app.get("/calculations/stats")
+def get_stats(db: Session = Depends(get_db)):
+    from sqlalchemy import func
+    total = db.query(Calculation).count()
+    if total == 0:
+        return {"total": 0, "most_used": "N/A", "average_result": 0, "recent": []}
+    
+    # Most used operation
+    most_used = db.query(Calculation.type, func.count(Calculation.type).label('count'))        .group_by(Calculation.type)        .order_by(func.count(Calculation.type).desc())        .first()
+    
+    # Average result
+    avg = db.query(func.avg(Calculation.result)).scalar()
+    
+    # Recent 5 calculations
+    recent = db.query(Calculation).order_by(Calculation.id.desc()).limit(5).all()
+    
+    return {
+        "total": total,
+        "most_used": most_used[0].value if most_used else "N/A",
+        "average_result": round(float(avg), 2) if avg else 0,
+        "recent": [{"id": c.id, "a": c.a, "b": c.b, "type": c.type.value, "result": c.result} for c in recent]
+    }
 @app.delete("/calculations/{id}")
 def delete(id: int, db: Session = Depends(get_db)):
     db_calc = db.query(Calculation).filter(Calculation.id == id).first()
