@@ -73,7 +73,7 @@
         window.onload = loadStats;
 
         async function loadStats() {
-            const response = await fetch('/calculations/stats');
+            const response = await fetch('/stats');
             const data = await response.json();
 
             document.getElementById('totalCalcs').textContent = data.total;

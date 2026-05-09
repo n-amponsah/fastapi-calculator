@@ -32,14 +32,14 @@ def setup_db():
 client = TestClient(app)
 
 def test_stats_empty():
-    response = client.get("/calculations/stats")
+    response = client.get("/stats")
     assert response.status_code == 200
     assert response.json()["total"] == 0
 
 def test_stats_after_adding():
     client.post("/calculations", json={"a": 3, "b": 4, "type": "Add"})
     client.post("/calculations", json={"a": 10, "b": 2, "type": "Multiply"})
-    response = client.get("/calculations/stats")
+    response = client.get("/stats")
     assert response.status_code == 200
     assert response.json()["total"] == 2
 
@@ -47,13 +47,13 @@ def test_stats_most_used():
     client.post("/calculations", json={"a": 1, "b": 2, "type": "Add"})
     client.post("/calculations", json={"a": 3, "b": 4, "type": "Add"})
     client.post("/calculations", json={"a": 5, "b": 2, "type": "Multiply"})
-    response = client.get("/calculations/stats")
+    response = client.get("/stats")
     assert response.json()["most_used"] == "Add"
 
 def test_stats_average_result():
     client.post("/calculations", json={"a": 2, "b": 2, "type": "Add"})
     client.post("/calculations", json={"a": 4, "b": 4, "type": "Add"})
-    response = client.get("/calculations/stats")
+    response = client.get("/stats")
     assert response.json()["average_result"] == 6.0
 
 def test_history_page_loads():
@@ -62,5 +62,5 @@ def test_history_page_loads():
 
 def test_stats_recent_calculations():
     client.post("/calculations", json={"a": 1, "b": 1, "type": "Add"})
-    response = client.get("/calculations/stats")
+    response = client.get("/stats")
     assert len(response.json()["recent"]) == 1

@@ -119,7 +119,7 @@ def edit(id: int, calc: CalculationCreate, db: Session = Depends(get_db)):
 def history_page(request: Request):
     return templates.TemplateResponse(request=request, name="history.html")
 
-@app.get("/calculations/stats")
+@app.get("/stats")
 def get_stats(db: Session = Depends(get_db)):
     from sqlalchemy import func
     total = db.query(Calculation).count()
